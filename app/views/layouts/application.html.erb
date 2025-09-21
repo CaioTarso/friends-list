@@ -13,14 +13,27 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
 
   </head>
   <body>
-   
     <%= render 'home/header' %>
-    <div class ="container">
+    <div class ="container mt-5">
+
+    <% flash.each do |key, message| %>
+        <% bootstrap_class = case key
+            when "notice" then "success"  # sucesso = verde
+            when "alert" then "danger"    # alerta/erro = vermelho
+            else "info"
+          end %>
+        <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% end %>
       <%= yield %>
     </div>
+    
     <!-- JavaScript do Bootstrap (com Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>

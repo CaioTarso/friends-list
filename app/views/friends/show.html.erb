@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @friend %>
-
-<div>
-  <%= link_to "Edit this friend", edit_friend_path(@friend) %> |
-  <%= link_to "Back to friends", friends_path %>
-
-  <%= button_to "Destroy this friend", @friend, method: :delete %>
+<div class="p-5 mb-5 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display mb-5 "><%= @friend.first_name %> <%= @friend.last_name %></h1>
+    <p class="lead mb-5">
+      <%= @friend.email %> |
+      <%= @friend.phone %> |
+      <%= @friend.linkedin %> 
+    </p>
+    <%= link_to "Edit", edit_friend_path(@friend), class: "btn btn-secondary btn-lg me-3" %>
+    <%= link_to "Back", friends_path, class: "btn btn-dark btn-lg" %>
+  </div>
 </div>
